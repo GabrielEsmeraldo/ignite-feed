@@ -80,7 +80,7 @@
   margin-right: 0.5rem;
 }
 
-.commentBox footerbutton span::before {
+.commentBox footer button span::before {
   content: '\2022';
   padding: 0 0.25rem;
 }
