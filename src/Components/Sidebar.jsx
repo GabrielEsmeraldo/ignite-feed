@@ -15,12 +15,12 @@ export function Sidebar(props) {
         <span>Front-End Developer</span>
       </div>
 
-      <footer>
+      {/* <footer>
         <button>
           <PencilLine size={20} />
           Editar seu perfil
         </button>
-      </footer>
+      </footer> */}
       
     </aside>
   )

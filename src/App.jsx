@@ -2,6 +2,7 @@ import { Header } from './Components/Header'
 import { Sidebar } from './Components/Sidebar'
 import { Post } from './Components/Post'
 
+
 import './styles/global.css'
 import styles from './styles/App.module.css'
 
@@ -37,6 +38,7 @@ export function App() {
       publishedAt: new Date('2022-05-10 20:00:00')
     },
   ]
+
 
   return (
     <>

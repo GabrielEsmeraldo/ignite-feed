@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { format, formatDistanceToNow } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
+import { v4 as uuidv4 } from 'uuid';
 
 import { Avatar } from './Avatar'
 import { Comment } from './Comment'
@@ -11,6 +12,7 @@ export function Post({ author, publishedAt, content }) {
 
   const [comments, setComments] = useState([])
   const [newComment, setNewComment] = useState('')
+
 
   const publishedDateFormatted = format(publishedAt, "dd 'de' LLLL 'às' H:mm'h'", {
     locale: ptBR
@@ -24,7 +26,12 @@ export function Post({ author, publishedAt, content }) {
   function handleCreateNewComment() {
     event.preventDefault()
 
-    setComments([...comments, newComment])
+    const addNewComment = {
+      id: uuidv4(),
+      commentText: newComment
+    }
+
+    setComments([...comments, addNewComment])
     setNewComment('')
   }
 
@@ -33,14 +40,14 @@ export function Post({ author, publishedAt, content }) {
     setNewComment(event.target.value)
   }
 
-  function deleteComment(commentToDelete) {
+  function deleteComment(idToDelete) {
     const comentWithoutDeleteOne = comments.filter(comment => {
-      return comment !== commentToDelete
+      return comment.id !== idToDelete
     })
     setComments(comentWithoutDeleteOne)
   }
 
-  function handleNewCommentInvalid(){
+  function handleNewCommentInvalid() {
     event.target.setCustomValidity('Esse campo é obrigatorio')
   }
 
@@ -90,7 +97,8 @@ export function Post({ author, publishedAt, content }) {
 
         <div className={styles.commentList}>
           {comments.map((comment) => {
-            return <Comment key={comment} content={comment} deleteComment={deleteComment} />
+            {console.log(comments)}
+            return <Comment key={comment.id} id={comment.id} content={comment.commentText} deleteComment={deleteComment} />
           })}
         </div>
       </article >

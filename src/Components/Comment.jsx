@@ -8,7 +8,7 @@ import { Modal } from "../Components/Modal"
 import styles from '../styles/Comment.module.css'
 import ptBR from "date-fns/locale/pt-BR";
 
-export function Comment({ content, deleteComment }) {
+export function Comment({ content, deleteComment, id }) {
 
   const [likes, setLikes] = useState(0)
   const [modal, setModal] = useState(false)
@@ -32,7 +32,7 @@ export function Comment({ content, deleteComment }) {
   }
 
   function HandleDeleteComment() {
-    deleteComment(content)
+    deleteComment(id)
   }
 
   return (
